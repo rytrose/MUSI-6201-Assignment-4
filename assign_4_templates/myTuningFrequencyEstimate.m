@@ -70,5 +70,10 @@ while i < num_blocks + 1
 end
 
 histogram(devs);
-tf = 1;
+[n, edges] = histcounts(devs);
+[val, i] = max(n);
+tf = edges(i);
+
+
+
 end
