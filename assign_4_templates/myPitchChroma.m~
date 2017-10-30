@@ -42,13 +42,13 @@ block_i = 1;
 size_x = size(X);
 num_bins = size_x(1);
 numBlocks = size_x(2);
-pitchChroma = zeros(12, numBlocks);
+pitchChroma = zeros(12, numBlocks)
 
 while block_i <= numBlocks
     while bin_i <= num_bins
         bin_freq = bin_i * (fs/(2 * num_bins));
         [~,I] = min(abs(adjusted_freqs - bin_freq));
-        pitch_class_index = mod(I, 12);
+        pitch_class_index = mod(bin_i, 12);
         pitchChroma(pitch_class_index, block_i)...
             = pitchChroma(pitch_class_index, block_i) + X(bin_i, block_i);
         bin_i = bin_i + 1;
