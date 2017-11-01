@@ -38,7 +38,6 @@ while i < 37
    adjusted_freqs(i) = (2^(tf/1200))*freqs(i);
    i = i + 1;
 end
-disp(adjusted_freqs)
 
 block_i = 1;
 size_x = size(X);
@@ -52,13 +51,12 @@ while block_i <= numBlocks
         bin_freq = bin_i * (fs/(2 * num_bins));
         if (bin_freq <= adjusted_freqs(36) && bin_freq >= adjusted_freqs(1))
             [~,I] = min(abs(adjusted_freqs - bin_freq));
-            disp(adjusted_freqs(I))
-            disp(bin_freq)
             pitch_class_index = 1 + mod(I-1, 12);
             pitchChroma(pitch_class_index, block_i) = pitchChroma(pitch_class_index, block_i) + abs(X(bin_i, block_i));
         end
         bin_i = bin_i + 1;
     end
+    pitchChroma(:,block_i) = myNorm(pitchChroma(:,block_i));
     block_i = block_i + 1;
 end
 

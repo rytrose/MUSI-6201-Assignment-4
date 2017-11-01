@@ -17,9 +17,9 @@ avgDeviation = 0;
 audio_counter = 0;
 while file_index <= length(audio_files)
     audio_file = audio_files(file_index).name;
-    if(any(regexp(audio_file,'wav$'))|| any(regexp(audio_file,'au$')))
+    if(any(regexp(audio_file,'wav$'))|| endsWith(audio_file, 'au'))
         audio_path = strcat(pathToAudio, audio_file);
-        [~,name,~] = fileparts(audio_path);
+        [filepath,name,ext] = fileparts(filename);
         gt_file = strcat(name, '.txt');
         gt_path = strcat(pathToGT, gt_file);
         gt = load(gt_path);
